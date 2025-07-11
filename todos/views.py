@@ -3,7 +3,7 @@ from .models import Task
 from .forms import TaskForm
 
 def task_list(request):
-    tasks = Task.objects.all().order_by('-created_at')
+    tasks = Task.objects.all()  # removed .order_by('-created_at') since created_at no longer exists
     form = TaskForm()
     if request.method == 'POST':
         form = TaskForm(request.POST)
