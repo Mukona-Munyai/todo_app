@@ -21,7 +21,11 @@
                     <span>{{ task.title }}</span>
                     <span>
                         <a href="{% url 'task_update' task.pk %}" class="btn-edit">Edit</a>
-                        <a href="{% url 'task_delete' task.pk %}" class="btn-delete">Completed</a>
+                        {% if not task.completed %}
+                        <a href="{% url 'task_completed' task.pk %}" class="btn-delete">Completed</a>
+                        {% else %}
+                        <span class="btn-cancel">Done</span>
+                        {% endif %}
                     </span>
                 </li>
             {% empty %}

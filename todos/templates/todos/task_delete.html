@@ -4,16 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete Task</title>
+    <title>Complete Task</title>
     <link rel="stylesheet" href="{% static 'todos/style.css' %}">
 </head>
 <body>
     <div class="container">
-        <h1>Delete Task</h1>
-        <p>Are you sure you want to delete the task: <strong>{{ task.title }}</strong>?</p>
+        <h1>Complete Task</h1>
+        <p>Are you sure you have completed the task: <strong>{{ task.title }}</strong>?</p>
         <form method="post">
             {% csrf_token %}
-            <button type="submit" class="btn-delete">Delete</button>
+            <button type="submit" class="btn-delete">Completed</button>
             <a href="{% url 'task_list' %}" class="btn-cancel">Cancel</a>
         </form>
     </div>

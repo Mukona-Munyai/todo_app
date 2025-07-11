@@ -23,9 +23,10 @@ def task_update(request, pk):
         form = TaskForm(instance=task)
     return render(request, 'todos/task_update.html', {'form': form, 'task': task})
 
-def task_delete(request, pk):
+def task_completed(request, pk):
     task = get_object_or_404(Task, pk=pk)
     if request.method == 'POST':
-        task.delete()
+        task.completed = True
+        task.save()
         return redirect('task_list')
     return render(request, 'todos/task_delete.html', {'task': task})
