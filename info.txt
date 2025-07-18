@@ -1,8 +1,11 @@
 Project Name: Django Todo App
 
+
 Project Structure:
 ------------------
-- db.sqlite3                # SQLite database file
+...existing code...
+tests/ (Project Tests)
+  └── test_todos.py        # Pytest tests for todos app
 - Dockerfile                # Docker configuration for containerization
 - manage.py                 # Django management script
 - ReadME.md                 # Project documentation
@@ -57,15 +60,24 @@ Environment:
 ------------
 - `.env` file for Django secret key, debug mode, and allowed hosts.
 
+
 Requirements:
 -------------
-- Only Django is strictly required for the app, but other packages are listed in `requirements.txt` (can be cleaned up for production).
+- Django is required for the app.
+- Pytest and pytest-django are included for testing.
+- Other packages are listed in `requirements.txt` (can be cleaned up for production).
+
 
 How to Run:
 -----------
 1. Build Docker image: `docker build -t todo-app .`
 2. Run container: `docker run -p 8000:8000 --env-file .env todo-app`
 3. Access the app at http://127.0.0.1:8000/
+
+How to Run Tests:
+-----------------
+1. Install dependencies: `pip install -r requirements.txt`
+2. Run tests: `pytest tests/`
 
 Notes:
 ------
