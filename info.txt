@@ -1,0 +1,73 @@
+Project Name: Django Todo App
+
+Project Structure:
+------------------
+- db.sqlite3                # SQLite database file
+- Dockerfile                # Docker configuration for containerization
+- manage.py                 # Django management script
+- ReadME.md                 # Project documentation
+- requirements.txt          # Python dependencies
+- .env                      # Environment variables (created for Django settings)
+
+lesson1/ (Main Django Project)
+  ├── __init__.py
+  ├── asgi.py
+  ├── settings.py           # Django settings (configured for .env usage)
+  ├── urls.py               # Root URL configuration (routes / and /home to todos app)
+  ├── wsgi.py
+  └── __pycache__/
+
+todos/ (Todo App)
+  ├── __init__.py
+  ├── admin.py              # Django admin configuration
+  ├── apps.py
+  ├── forms.py              # Django forms for task management
+  ├── models.py             # Task model definition
+  ├── tests.py
+  ├── urls.py               # App-specific URLs (task list, update, complete)
+  ├── views.py              # Views for listing, updating, and completing tasks
+  ├── migrations/           # Database migrations
+  │   ├── __init__.py
+  │   ├── 0001_initial.py
+  │   └── 0002_remove_task_created_at_remove_task_updated_at.py
+  ├── static/
+  │   └── todos/style.css   # App-specific CSS
+  └── templates/
+      └── todos/
+          ├── task_delete.html
+          ├── task_list.html
+          └── task_update.html
+
+Functionality:
+--------------
+- Task List: View all tasks (root URL `/` and `/home`).
+- Task Update: Update a task by its primary key (`/update/<int:pk>/`).
+- Task Complete: Mark a task as completed (`/completed/<int:pk>/`).
+- Admin: Django admin interface at `/admin/`.
+
+Dockerization:
+--------------
+- Uses Python 3.11 slim image.
+- Installs dependencies from `requirements.txt`.
+- Copies all project files into the container.
+- Exposes port 8000.
+- Runs the Django development server on 0.0.0.0:8000 (can be changed to 127.0.0.1:8000 if needed).
+
+Environment:
+------------
+- `.env` file for Django secret key, debug mode, and allowed hosts.
+
+Requirements:
+-------------
+- Only Django is strictly required for the app, but other packages are listed in `requirements.txt` (can be cleaned up for production).
+
+How to Run:
+-----------
+1. Build Docker image: `docker build -t todo-app .`
+2. Run container: `docker run -p 8000:8000 --env-file .env todo-app`
+3. Access the app at http://127.0.0.1:8000/
+
+Notes:
+------
+- The `/home` URL was added to route to the task list for user convenience.
+- The project is suitable for local development and can be extended for production use.
